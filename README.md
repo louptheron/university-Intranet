@@ -19,11 +19,6 @@ An University Intranet, for a project in J2EE
       `motdepasse` varchar(200) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     
-    -- --------------------------------------------------------
-    
-    --
-    -- Table structure for table `enseignant`
-    --
     
     CREATE TABLE `enseignant` (
       `id` int(11) NOT NULL,
@@ -36,11 +31,14 @@ An University Intranet, for a project in J2EE
       `motdepasse` varchar(200) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     
-    -- --------------------------------------------------------
-    
-    --
-    -- Table structure for table `etudiant`
-    --
+    CREATE TABLE `new` (
+    `id` int(100) NOT NULL,
+    `titre` varchar(500) NOT NULL,
+      `description` varchar(500) NOT NULL,
+      `image` varchar(500) NOT NULL,
+      `date_expiration` varchar(500) NOT NULL,
+      `actif` int(1) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     
     CREATE TABLE `etudiant` (
       `id` int(11) NOT NULL,
