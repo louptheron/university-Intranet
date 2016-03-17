@@ -1,6 +1,7 @@
 package tp_portail;
 
 public class Utilisateur {
+	private int id;
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -65,5 +66,11 @@ public class Utilisateur {
 	}
 	public void setTypeUtilisateur(String typeUtilisateur) {
 		this.typeUtilisateur = typeUtilisateur;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

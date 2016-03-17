@@ -24,6 +24,8 @@ public class GestionUtilisateur {
 		String motdepasse = request.getParameter("motdepasse");
 		String confirmationMotdepasse = request.getParameter("confirmationMotdepasse");
 		String telephone = request.getParameter("telephone");
+		String typeUtilisateur = request.getParameter("typeUtilisateur");
+
 		
 		Utilisateur utilisateurBean = new Utilisateur();
 				
@@ -32,7 +34,15 @@ public class GestionUtilisateur {
 		utilisateurBean.setTelephone(telephone);
 
 		try{ 
-			validation(email);
+			validation(typeUtilisateur);
+		}
+		catch( Exception e ) { 
+			erreurs.put( "typeUtilisateur", e.getMessage() );
+		}
+		utilisateurBean.setTypeUtilisateur(typeUtilisateur);
+		
+		try{ 
+			validation(nom);
 		}
 		catch( Exception e ) { 
 			erreurs.put( "nom", e.getMessage() );
@@ -102,12 +112,12 @@ public class GestionUtilisateur {
 	
 	private void validationMdp( String mdp, String confirmation) throws Exception {
 		if(mdp == null|| mdp.trim().equals("") ||confirmation== null|| confirmation.trim().equals("") ) {
-			throw new Exception( "Merci de saisir et confirmer votre num�ro de carte bancaire.");}
+			throw new Exception( "Merci de saisir et confirmer votre mot de passe.");}
 		else{
 			if( ! mdp.equals( confirmation) ) {
-				throw new Exception( "Les num�ros de carte sont diff�rents, merci de les saisir � nouveau.");
-			} else if( mdp.length() < 10 ) {
-				throw new Exception( "Le numerode carte doit contenir 10 chiffres");
+				throw new Exception( "Les mots de passes, merci de les saisir à nouveau.");
+			} else if( mdp.length() < 2 ) {
+				throw new Exception( "Le mot de passe doit contenir 2 charactères");
 			}
 		}
 	}

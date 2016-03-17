@@ -25,9 +25,29 @@ public class GestionUtilisateurServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UtilisateurDB utilisateurs = new UtilisateurDB();
+		String supprimer = request.getParameter("supprimer");
+		String req_type = request.getParameter("type");
 
+		if(supprimer != null){
+			int id = Integer.parseInt(supprimer);
+			if(req_type.equals("etudiant")){
+				request.setAttribute("supprime", utilisateurs.supprimerEtudiant(id));
+			}
+			else if (req_type.equals("enseignant")){
+				request.setAttribute("supprime", utilisateurs.supprimerEnseignant(id));
+			}
+			else if (req_type.equals("administateur")){
+				request.setAttribute("supprime", utilisateurs.supprimerAdministrateur(id));
+			}
+		}
+			
 		UtilisateurDB utilisateursDB = new UtilisateurDB();
-		request.setAttribute("etudiants", utilisateursDB.recupererEtudiants());		
+		request.setAttribute("etudiants", utilisateursDB.recupererEtudiants());	
+		request.setAttribute("enseignants", utilisateursDB.recupererEnseignants());	
+		request.setAttribute("administrateurs", utilisateursDB.recupererAdministrateurs());		
+
+
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/gestionUtilisateurs.jsp").forward(request, response);
 	}
