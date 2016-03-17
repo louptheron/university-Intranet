@@ -205,7 +205,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		Matcher matcher;
 		
 		matcher = Pattern.compile(EMAIL_PATTERN).matcher(email);
-		if(matcher.matches()){
+		if(!matcher.matches()){
 			throw new Exception( "email invalide");
 		}
 	}
