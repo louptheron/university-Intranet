@@ -54,6 +54,3 @@
 
 <a href="gestionUtilisateurs">retour à la gestion des utilisateurs</a>
 	<%@ include file="footer.jsp" %>
-
-</body>
-</html>

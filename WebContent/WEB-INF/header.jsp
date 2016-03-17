@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-       
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Portail</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <body>
-<h1>Portail Intranet</h1>
+<div id="wrap">
+  <div id="top">
+    <h2>Portail</a></h2>
+    <div id="menu">
+      <ul>
+        <li><a href="/" class="current">home</a></li>
+        <li><a href="gestionNews">News</a></li>
+        <li><a href="gestionUtilisateurs">Utilisateurs</a></li>
+        <li><a href="/">Autre</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="content">
