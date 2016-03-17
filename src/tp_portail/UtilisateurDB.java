@@ -104,7 +104,6 @@ public class UtilisateurDB {
 				case "enseignant":
 					resultat = statement.executeQuery("SELECT * FROM " + utilisateur.getTypeUtilisateur() + " WHERE id = " + utilisateur.getId() + ";");
 					if(resultat.next()){
-						System.out.println("ok");
 						statement.executeUpdate("UPDATE " + utilisateur.getTypeUtilisateur() + " SET "
 								+ "email = '" + utilisateur.getEmail()
 								+ "' , nom = '" + utilisateur.getNom()
@@ -119,7 +118,6 @@ public class UtilisateurDB {
 
 					}
 					else {
-						System.out.println("ok2");
 						statement.executeUpdate("INSERT INTO " + utilisateur.getTypeUtilisateur() + " (email, nom, prenom, adresse, civilite, telephone, motdepasse) "
 								+ "VALUES ('" + utilisateur.getEmail()
 								+ "' , '" + utilisateur.getNom()
