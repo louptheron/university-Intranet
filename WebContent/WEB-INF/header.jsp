@@ -17,7 +17,7 @@
         <li><a href="/" class="current">home</a></li>
         <li><a href="gestionNews">News</a></li>
         <li><a href="gestionUtilisateurs">Utilisateurs</a></li>
-        <li><a href="/">Autre</a></li>
+        <li><a href="gestionEnseignements">Enseignements</a></li>
       </ul>
     </div>
   </div>

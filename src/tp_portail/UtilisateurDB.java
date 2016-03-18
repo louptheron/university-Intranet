@@ -247,8 +247,6 @@ public class UtilisateurDB {
 				String civilite = resultat.getString("civilite");
 				String motdepasse = resultat.getString("motdepasse");
 				
-				System.out.print(email);
-
 				Utilisateur utilisateurBean = new Utilisateur();
 				utilisateurBean.setEmail(email);
 				utilisateurBean.setPrenom(prenom);

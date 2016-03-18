@@ -19,7 +19,6 @@
 		<br> Image : <input type="text" name="image"
 			value="<c:out value="${aNew.image}" />">
 		<c:out value="${erreurs.image}" />
-
 		<br> Date d'expiration : <input type="text"
 			name="date_expiration"
 			value="<c:out value="${aNew.date_expiration}" />">
