@@ -77,7 +77,9 @@ public class GestionEnseignementServlet extends HttpServlet {
 		enseignenemt.put( "nb_heures", nb_heures );
 		enseignenemt.put( "enseignant", enseignant );
 		enseignenemt.put( "id", id );
+		request.setAttribute("enseignement", enseignenemt);
 
+		
 		Enseignement enseignementBean = new Enseignement();
 						
 		if(!id.isEmpty()){

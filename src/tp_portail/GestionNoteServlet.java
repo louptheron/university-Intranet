@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/gestionNews")
-public class GestionNewServlet extends HttpServlet {
+@WebServlet("/gestionNotes")
+public class GestionNoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String resultat;
 
@@ -24,7 +24,7 @@ public class GestionNewServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GestionNewServlet() {
+    public GestionNoteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,27 @@ public class GestionNewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NewDB newDB = new NewDB();
+		NoteDB noteDB = new NoteDB();
+		UtilisateurDB utilisateursDB = new UtilisateurDB();
+		EnseignementDB enseignementDB = new EnseignementDB();
 		String supprimer = request.getParameter("supprimer");
 		String modifier = request.getParameter("modifier");
 
-
 		if(supprimer != null){
 			int id = Integer.parseInt(supprimer);
-			request.setAttribute("supprime", newDB.supprimerNew(id));
+			request.setAttribute("supprime", noteDB.supprimerNote(id));
 		}
 		
 		if(modifier != null){
 			int id = Integer.parseInt(modifier);
-			request.setAttribute("aNew", newDB.recupererNew(id));
+			request.setAttribute("note", noteDB.recupererNote(id));
 		}
 		
-		request.setAttribute("news", newDB.recupererNews());
+		request.setAttribute("etudiants", utilisateursDB.recupererEtudiants());	
+		request.setAttribute("modules", enseignementDB.recupererEnseignements());	
+		request.setAttribute("notes", noteDB.recupererNotes());
 		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/gestionNews.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/gestionNotes.jsp").forward(request, response);
 	}
 	
 
@@ -60,75 +63,53 @@ public class GestionNewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Map<String, String> aNew = new HashMap<String, String>();
+		Map<String, String> noteSaved = new HashMap<String, String>();
 		Map<String, String> erreurs = new HashMap<String, String>();
 
-		String titre = request.getParameter("titre");
-		String description= request.getParameter("description");
-		String image = request.getParameter("image");
-		String date_expiration = request.getParameter("date_expiration");
-		String actif = request.getParameter("actif");
+		String etudiant = request.getParameter("etudiant");
+		String module = request.getParameter("module");
+		String note = request.getParameter("note");
 		String id = request.getParameter("id");
+		
+		noteSaved.put( "etudiant", etudiant );
+		noteSaved.put( "module", module );
+		noteSaved.put( "note", note );
+		noteSaved.put( "id", id );
+		request.setAttribute("note", noteSaved);
 
-		aNew.put( "titre", titre );
-		aNew.put( "description", description );
-		aNew.put( "image", image );
-		aNew.put( "date_expiration", date_expiration );
-		aNew.put( "actif", actif );
-		aNew.put( "id", id );
-		request.setAttribute("aNew", aNew);
-
-		New newBean = new New();
+		Note noteBean = new Note();
 						
-		if(!request.getParameter("id").isEmpty()){
-			newBean.setId(Integer.parseInt(request.getParameter("id")));
+		if(!id.isEmpty()){
+			noteBean.setId(Integer.parseInt(id));
 		}
 
 		try{ 
-			validation(titre, 2);
+			validation(etudiant, 1);
 		}
 		catch( Exception e ) { 
-			erreurs.put( "titre", e.getMessage() );
-
+			erreurs.put( "etudiant", e.getMessage() );
 		}
-		newBean.setTitre(titre);
+		noteBean.setEtudiant(Integer.parseInt(etudiant));
 		
 		try{ 
-			validation(description, 2);
+			validation(module, 1);
 		}
 		catch( Exception e ) { 
-			erreurs.put( "description", e.getMessage() );
+			erreurs.put( "module", e.getMessage() );
 		}
-		newBean.setDescription(description);
+		noteBean.setModule(Integer.parseInt(module));
 		
 		try{ 
-			validation(image, 2);
+			validation(note, 1);
 		}
 		catch( Exception e ) { 
-			erreurs.put( "image", e.getMessage() );
+			erreurs.put( "note", e.getMessage() );
 		}
-		newBean.setImage(image);
-		
-		try{ 
-			validation(date_expiration, 2);
-		}
-		catch( Exception e ) { 
-			erreurs.put( "date_expiration", e.getMessage() );
-		}
-		newBean.setDate_expiration(date_expiration);
-
-		try{ 
-			validation(actif, 1);
-		}
-		catch( Exception e ) { 
-			erreurs.put( "actif", e.getMessage() );
-		}
-		newBean.setActif(Integer.parseInt(actif));
-
+		noteBean.setNote(Integer.parseInt(note));
 		
 		if( erreurs.isEmpty() ) {
-			NewDB newDB = new NewDB();
-			newDB.insertionNew(newBean);
+			NoteDB noteDB = new NoteDB();
+			noteDB.insertionNote(noteBean);
 			resultat= "insertion ok.";
 		} else{ resultat= "insertion echec";}
 				
@@ -136,7 +117,6 @@ public class GestionNewServlet extends HttpServlet {
 		request.setAttribute("erreurs", erreurs);
 		
 		doGet(request, response);
-
 	}
 	
 	private void validation(String input, int len) throws Exception {

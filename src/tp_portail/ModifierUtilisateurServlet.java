@@ -92,7 +92,6 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		utilisateurBean.setCivilite(civilite);
 		utilisateurBean.setTypeUtilisateur(typeUtilisateur);
 
-		
 		if(!request.getParameter("id").isEmpty()){
 			utilisateurBean.setId(Integer.parseInt(request.getParameter("id")));
 		}
@@ -184,7 +183,6 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 			resultat= "insertion ok.";
 		} else{ resultat= "insertion echec";}
 		
-
 				// TODO Auto-generated method stub
 		
 		request.setAttribute("resultat", getResultat());

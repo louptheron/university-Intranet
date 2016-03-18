@@ -90,6 +90,19 @@ An University Intranet, for a project in J2EE
       `actif` int(1) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     
+    -- --------------------------------------------------------
+    
+    --
+    -- Table structure for table `note`
+    --
+    
+    CREATE TABLE `note` (
+      `id` int(100) NOT NULL,
+      `etudiant` int(100) NOT NULL,
+      `module` int(100) NOT NULL,
+      `note` int(100) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    
     --
     -- Indexes for dumped tables
     --
@@ -125,6 +138,12 @@ An University Intranet, for a project in J2EE
       ADD PRIMARY KEY (`id`);
     
     --
+    -- Indexes for table `note`
+    --
+    ALTER TABLE `note`
+      ADD PRIMARY KEY (`id`);
+    
+    --
     -- AUTO_INCREMENT for dumped tables
     --
     
@@ -153,3 +172,8 @@ An University Intranet, for a project in J2EE
     --
     ALTER TABLE `new`
       MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    --
+    -- AUTO_INCREMENT for table `note`
+    --
+    ALTER TABLE `note`
+      MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

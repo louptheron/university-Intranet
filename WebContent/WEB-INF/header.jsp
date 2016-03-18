@@ -18,6 +18,7 @@
         <li><a href="gestionNews">News</a></li>
         <li><a href="gestionUtilisateurs">Utilisateurs</a></li>
         <li><a href="gestionEnseignements">Enseignements</a></li>
+        <li><a href="gestionNotes">Notes</a></li>
       </ul>
     </div>
   </div>
