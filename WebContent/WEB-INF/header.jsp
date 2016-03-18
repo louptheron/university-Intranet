@@ -14,7 +14,7 @@
     <h2>Portail</a></h2>
     <div id="menu">
       <ul>
-        <li><a href="/" class="current">home</a></li>
+        <li><a href="accueil" class="current">accueil</a></li>
         <li><a href="gestionNews">News</a></li>
         <li><a href="gestionUtilisateurs">Utilisateurs</a></li>
         <li><a href="gestionEnseignements">Enseignements</a></li>

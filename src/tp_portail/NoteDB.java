@@ -45,6 +45,7 @@ public class NoteDB {
 
 					}
 					else {
+						System.out.println("ok");
 						statement.executeUpdate("INSERT INTO note (etudiant, module, note) "
 								+ "VALUES ('" + note.getEtudiant()								
 								+ "' , '" + note.getModule()
@@ -75,7 +76,7 @@ public class NoteDB {
 		try{
 			statement = (Statement) connexion.createStatement();
 
-			resultat = statement.executeQuery("SELECT * FROM module;");
+			resultat = statement.executeQuery("SELECT * FROM note;");
 
 			while(resultat.next()){
 				int etudiant = resultat.getInt("etudiant");
