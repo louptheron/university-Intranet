@@ -15,11 +15,20 @@
     <div id="menu">
       <ul>
         <li><a href="accueil" class="current">accueil</a></li>
-        <li><a href="gestionNews">News</a></li>
-        <li><a href="gestionUtilisateurs">Utilisateurs</a></li>
-        <li><a href="gestionEnseignements">Enseignements</a></li>
-        <li><a href="gestionNotes">Notes</a></li>
+        <li><a href="news">News</a></li>
+        <li><a href="compte">Mon Compte</a></li>
+        <li><a href="notes">Mes Notes</a></li>
+        <li><a href="contact">Contact et accès</a></li>
       </ul>
     </div>
   </div>
+      <div style="text-align: center; font-size: 1.5em;">
+      Gestion : 
+        <a href="gestionNews">News</a> | 
+        <a href="gestionUtilisateurs">Utilisateurs</a> | 
+        <a href="gestionSupports">Support de Cours</a> | 
+        <a href="gestionEnseignements">Enseignements</a> | 
+        <a href="gestionNotes">Notes</a>
+      </div>
   <div id="content">
+  
