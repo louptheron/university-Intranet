@@ -14,21 +14,25 @@
     <h2>Portail</a></h2>
     <div id="menu">
       <ul>
-        <li><a href="accueil" class="current">accueil</a></li>
-        <li><a href="news">News</a></li>
-        <li><a href="compte">Mon Compte</a></li>
-        <li><a href="notes">Mes Notes</a></li>
+      	<li><a href="accueil" class="current">accueil</a></li>
+      	<c:if test="${!empty sessionScope.utilisateur}">
+			<li><a href="news">News</a></li>
+        	<li><a href="compte">Mon Compte</a></li>
+        	<li><a href="notes">Mes Notes</a></li>
+        </c:if>
         <li><a href="contact">Contact et accès</a></li>
       </ul>
     </div>
   </div>
-      <div style="text-align: center; font-size: 1.5em;">
-      Gestion : 
+  	<c:if test="${!empty sessionScope.utilisateur}">
+     <div style="text-align: center; font-size: 1.5em;">
+     	Gestion : 
         <a href="gestionNews">News</a> | 
         <a href="gestionUtilisateurs">Utilisateurs</a> | 
         <a href="gestionSupports">Support de Cours</a> | 
         <a href="gestionEnseignements">Enseignements</a> | 
         <a href="gestionNotes">Notes</a>
       </div>
+     </c:if>
   <div id="content">
   

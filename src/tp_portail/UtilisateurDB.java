@@ -20,35 +20,46 @@ public class UtilisateurDB {
 		}
 
 		try{
-			connexion= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cours_j2ee", "root", "");
+			connexion= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cours_j2ee", "root", "root");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Utilisateur connectionUtilisateur(String emailUser, String motdepasseUser, String typeUtilisateur) {
-		Utilisateur utilisateurBean = new Utilisateur();
-
+	public Utilisateur connectionUtilisateur(String login, String typeUtilisateur) {
+		Utilisateur utilisateur = new Utilisateur();
 		loadDatabase();
 		Statement statement=null;
 		ResultSet resultat=null;
+		
 		try{
-			statement= (Statement) connexion.createStatement();
-
-			resultat= statement.executeQuery("SELECT * FROM " + typeUtilisateur + " WHERE email = " + emailUser + ";");
-
-			if(resultat != null){
-				String email = resultat.getString("email");
+			statement = (Statement) connexion.createStatement();
+			resultat= statement.executeQuery("SELECT * FROM " + typeUtilisateur + " where nom = '" + login + "';");
+			
+			if(resultat.next()){
 				String motdepasse = resultat.getString("motdepasse");
-				utilisateurBean.setNom(email);
-				utilisateurBean.setMotdepasse(motdepasse);
-
-				if(utilisateurBean.getMotdepasse().equals(motdepasseUser)){
-					
-				}
-			}
-		} catch(SQLException e) {
-		} finally{
+				String email = resultat.getString("email");
+				String prenom = resultat.getString("prenom");
+				String nom = resultat.getString("nom");
+				String classe = resultat.getString("classe");
+				String adresse = resultat.getString("adresse");
+				String telephone = resultat.getString("telephone");
+				String civilite = resultat.getString("civilite");
+				int id = resultat.getInt("id");
+				
+				utilisateur.setEmail(email);
+				utilisateur.setPrenom(prenom);
+				utilisateur.setCivilite(civilite);
+				utilisateur.setNom(nom);
+				utilisateur.setTelephone(telephone);
+				utilisateur.setClasse(classe);
+				utilisateur.setAdresse(adresse);
+				utilisateur.setMotdepasse(motdepasse);
+				utilisateur.setId(id);
+			}else utilisateur=null;
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally{
 			// Fermeture de la connexion
 			try{
 				if(resultat!= null)
@@ -57,9 +68,9 @@ public class UtilisateurDB {
 					statement.close();
 				if(connexion!= null)
 					connexion.close();
-			} catch(SQLException ignore) { }
+			}catch(SQLException ignore) { System.out.println(ignore); }
 		}
-		return utilisateurBean;
+		return utilisateur;
 	}
 	
 	public void insertionUtilisateur(Utilisateur utilisateur) {

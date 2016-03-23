@@ -20,7 +20,7 @@ public class EnseignementDB {
 		}
 
 		try{
-			connexion= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cours_j2ee", "root", "");
+			connexion= (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/cours_j2ee", "root", "root");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
