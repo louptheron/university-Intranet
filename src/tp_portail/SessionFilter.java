@@ -18,8 +18,6 @@ import javax.servlet.annotation.WebFilter;
  */
 @WebFilter("/SessionFilter")
 public class SessionFilter implements Filter {
-	
-	private FilterConfig filterConfig = null;   
     /**
      * Default constructor. 
      */
@@ -37,14 +35,26 @@ public class SessionFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest req, ServletResponse res,
             FilterChain chain) throws IOException, ServletException {
- 
-        System.out.println("The message is: " + filterConfig.getInitParameter("message"));
-        chain.doFilter(req, res);
+		HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) res;
+        
+
+         HttpSession session =request.getSession(false);
+         Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
+         
+        if(utilisateur != null&&"theron".equals(utilisateur.getNom())&&"/tp_portail/authentification".equals(request.getRequestURI())){
+        	 req.setAttribute("errorMessage", "dejaConnecté gros bof");
+             System.out.println(utilisateur.getPrenom());
+             req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req, res);
+        }
+        else{
+		String uri = request.getRequestURI();
+        System.out.println("Sa marche ...." + uri);
+        chain.doFilter(request, response);}
     }
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig config) throws ServletException {
-		this.filterConfig = config;
     }
 }
